@@ -17,7 +17,7 @@ endif
 help:
 	@grep -E '^## ' Makefile|grep -v ':'|sed 's,^## ,,g'
 	@echo This Makefile has the targets:
-	@grep -E '^## [.a-z_/]{2,}:' Makefile|sed 's,^## *,\t,g' |sed 's,: ,\t,g'
+	@grep -E '^## [.a-z_/]{2,}:' Makefile | sed 's/^## */	/g' | sed 's/: /	/g'
 
 
 update:
@@ -33,10 +33,10 @@ sdist:
 
 ## egg: creates an binary egg for cooleasy
 egg:
-	-python2.7 setup.py $(PKGTAG) bdist_egg
+	-python setup.py $(PKGTAG) bdist_egg
 
 release: pyflakes pep8
-	-python2.7 setup.py $(PKGTAG) bdist_egg
+	-python setup.py $(PKGTAG) bdist_egg
 
 ## check: run pyflakes for cooleasy
 check: pyflakes pep8
